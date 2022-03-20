@@ -1,0 +1,9 @@
+{
+    "location_list": "Locations",
+    "location_list_refresh": "Refresh",
+    "location_list_update": "Update",
+    "location_list_retry": "Retry",
+    "location_list_empty": "Empty",
+    "location_list_error": "Error",
+    "location_list_loading": "Loading..."
+}
