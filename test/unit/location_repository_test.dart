@@ -19,7 +19,7 @@ void main() {
       when(api.getLocationList(page: 0))
           .thenAnswer((_) async => LocationListResponse(data: [_stub(), _stub()], hasMore: false));
 
-      final repository = LocationRepository(api);
+      final repository = LocationRepository(api, const Duration(milliseconds: 10));
       final result = await repository.getLocationList();
 
       expect(result is location_resolution.Success, true);
@@ -33,7 +33,7 @@ void main() {
       when(api.getLocationList(page: 1))
           .thenAnswer((_) async => LocationListResponse(data: [_stub(), _stub()], hasMore: false));
 
-      final repository = LocationRepository(api);
+      final repository = LocationRepository(api, const Duration(milliseconds: 10));
       final result = await repository.getLocationList();
 
       expect(result is location_resolution.Success, true);
@@ -44,7 +44,7 @@ void main() {
       final api = MockLocationApi();
       when(api.getLocationList(page: 0)).thenAnswer((_) async => throw const HttpException(""));
 
-      final repository = LocationRepository(api, delayFactor: Duration.zero);
+      final repository = LocationRepository(api, const Duration(milliseconds: 10));
       final result = await repository.getLocationList();
 
       expect(result is location_resolution.Error, true);
@@ -59,7 +59,7 @@ void main() {
             .thenAnswer((_) async => LocationListResponse(data: [_stub(), _stub()], hasMore: false));
       });
 
-      final repository = LocationRepository(api, delayFactor: const Duration(milliseconds: 10));
+      final repository = LocationRepository(api, const Duration(milliseconds: 10));
       final result = await repository.getLocationList();
       result.toString();
 

@@ -7,4 +7,6 @@ abstract class RegisterModule {
   Dio getDio() => Dio()..interceptors.add(CurlLoggerDioInterceptor(printOnSuccess: true));
   @Named("BASE_URL")
   String getBaseUrl() => "https://us-central1-mycommon-connect.cloudfunctions.net";
+  @Named("RETRY_DURATION")
+  Duration getRetryDuration() => const Duration(milliseconds: 200);
 }

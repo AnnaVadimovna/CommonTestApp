@@ -19,13 +19,14 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
   final gh = _i2.GetItHelper(get, environment, environmentFilter);
   final registerModule = _$RegisterModule();
   gh.factory<_i3.Dio>(() => registerModule.getDio());
+  gh.factory<Duration>(() => registerModule.getRetryDuration(),
+      instanceName: 'RETRY_DURATION');
   gh.factory<String>(() => registerModule.getBaseUrl(),
       instanceName: 'BASE_URL');
   gh.factory<_i4.LocationApi>(() => _i4.LocationApi(get<_i3.Dio>(),
       baseUrl: get<String>(instanceName: 'BASE_URL')));
   gh.factory<_i5.LocationRepository>(() => _i5.LocationRepository(
-      get<_i4.LocationApi>(),
-      delayFactor: get<Duration>()));
+      get<_i4.LocationApi>(), get<Duration>(instanceName: 'RETRY_DURATION')));
   return get;
 }
 

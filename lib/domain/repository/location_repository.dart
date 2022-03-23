@@ -11,7 +11,7 @@ class LocationRepository {
   final Duration? delayFactor;
   final LocationApi _api;
 
-  LocationRepository(this._api, {this.delayFactor});
+  LocationRepository(this._api, @Named("RETRY_DURATION") this.delayFactor);
   Future<LocationResolution> getLocationList() async {
     final pageResults = await RangeStream(0, 100)
         .asyncMap((page) => _loadOnePage(page))
